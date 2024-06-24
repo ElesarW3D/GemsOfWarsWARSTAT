@@ -1,0 +1,15 @@
+C:\Users\elesa\source\repos\GemsOfWarsWARSTAT\SimpleControlLibrary\bin\Debug\SimpleControlLibrary.dll
+C:\Users\elesa\source\repos\GemsOfWarsWARSTAT\SimpleControlLibrary\bin\Debug\SimpleControlLibrary.pdb
+C:\Users\elesa\source\repos\GemsOfWarsWARSTAT\SimpleControlLibrary\obj\Debug\SimpleControlLibrary.csproj.AssemblyReference.cache
+C:\Users\elesa\source\repos\GemsOfWarsWARSTAT\SimpleControlLibrary\obj\Debug\SelectControl\UnitColorSelector.g.cs
+C:\Users\elesa\source\repos\GemsOfWarsWARSTAT\SimpleControlLibrary\obj\Debug\UserControl1.g.cs
+C:\Users\elesa\source\repos\GemsOfWarsWARSTAT\SimpleControlLibrary\obj\Debug\SimpleControlLibrary_MarkupCompile.cache
+C:\Users\elesa\source\repos\GemsOfWarsWARSTAT\SimpleControlLibrary\obj\Debug\SimpleControlLibrary_MarkupCompile.lref
+C:\Users\elesa\source\repos\GemsOfWarsWARSTAT\SimpleControlLibrary\obj\Debug\SelectControl\UnitColorSelector.baml
+C:\Users\elesa\source\repos\GemsOfWarsWARSTAT\SimpleControlLibrary\obj\Debug\UserControl1.baml
+C:\Users\elesa\source\repos\GemsOfWarsWARSTAT\SimpleControlLibrary\obj\Debug\SimpleControlLibrary.g.resources
+C:\Users\elesa\source\repos\GemsOfWarsWARSTAT\SimpleControlLibrary\obj\Debug\SimpleControlLibrary.Properties.Resources.resources
+C:\Users\elesa\source\repos\GemsOfWarsWARSTAT\SimpleControlLibrary\obj\Debug\SimpleControlLibrary.csproj.GenerateResource.cache
+C:\Users\elesa\source\repos\GemsOfWarsWARSTAT\SimpleControlLibrary\obj\Debug\SimpleControlLibrary.csproj.CoreCompileInputs.cache
+C:\Users\elesa\source\repos\GemsOfWarsWARSTAT\SimpleControlLibrary\obj\Debug\SimpleControlLibrary.dll
+C:\Users\elesa\source\repos\GemsOfWarsWARSTAT\SimpleControlLibrary\obj\Debug\SimpleControlLibrary.pdb

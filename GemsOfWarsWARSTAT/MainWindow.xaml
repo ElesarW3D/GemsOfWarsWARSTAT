@@ -1,0 +1,250 @@
+﻿<mah:MetroWindow x:Class="GemsOfWarsWARSTAT.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GemsOfWarsWARSTAT"
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"        
+        xmlns:converters ="clr-namespace:MahApps.Metro.IconPacks.Converter;assembly=MahApps.Metro.IconPacks.Core"    
+        mc:Ignorable="d"
+        xmlns:controls="clr-namespace:GemsOfWarsWARSTAT.Controls"
+        xmlns:statistic ="clr-namespace:GemsOfWarsWARSTAT.Controls.Statistic"
+        DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
+        Title="Gems %f wars. Defence calculation" 
+        Height="800" 
+        Width="1000"
+        WindowState="Maximized"
+        WindowStyle="None">
+    <Window.Resources>
+        <ResourceDictionary>
+            <!--  This is the template for all menu items. In this sample we use the glyph items.  -->
+            <DataTemplate 
+                x:Key="HamburgerMenuItem" 
+                DataType="{x:Type mah:HamburgerMenuGlyphItem}">
+                <DockPanel Height="48" LastChildFill="True" ToolTip="{Binding Label}">
+                    <Grid x:Name="IconPart"
+                        Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type mah:HamburgerMenu}}, Path=CompactPaneLength}"
+                        DockPanel.Dock="Left">
+                        <Image Margin="12"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Source="{Binding Glyph}" />
+                    </Grid>
+                    <TextBlock 
+                        x:Name="TextPart"
+                        VerticalAlignment="Center"
+                        FontSize="16"
+                        Text="{Binding Label}" />
+                   
+                </DockPanel>
+                <DataTemplate.Triggers>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type mah:HamburgerMenu}}, Path=PanePlacement}" Value="Right">
+                        <Setter TargetName="IconPart" Property="DockPanel.Dock" Value="Right" />
+                        <Setter TargetName="TextPart" Property="Margin" Value="8 0 0 0" />
+                    </DataTrigger>
+                </DataTemplate.Triggers>
+            </DataTemplate>
+
+            <!--  This is the template for the option menu item  -->
+            <DataTemplate x:Key="HamburgerOptionsMenuItem" DataType="{x:Type mah:HamburgerMenuIconItem}">
+                <DockPanel Height="48" LastChildFill="True">
+                    <ContentControl x:Name="IconPart"
+                        Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type mah:HamburgerMenu}}, Path=CompactPaneLength}"
+                        Content="{Binding Icon}"
+                        DockPanel.Dock="Left"
+                        Focusable="False"
+                        IsTabStop="False" />
+                    <TextBlock x:Name="TextPart"
+                   VerticalAlignment="Center"
+                   FontSize="16"
+                   Text="{Binding Label}" />
+                </DockPanel>
+                <DataTemplate.Triggers>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type mah:HamburgerMenu}}, Path=PanePlacement}" Value="Right">
+                        <Setter TargetName="IconPart" Property="DockPanel.Dock" Value="Right" />
+                        <Setter TargetName="TextPart" Property="Margin" Value="8 0 0 0" />
+                    </DataTrigger>
+                </DataTemplate.Triggers>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Window.Background>
+        <ImageBrush ImageSource=".\Resource\Logo2.png"/>
+    </Window.Background>
+    <Grid>
+        <!--<Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition />
+         
+        </Grid.ColumnDefinitions>-->
+        
+
+       <Grid x:Name="MContainer" 
+              Margin="48, 0, 0, 0"
+              Visibility="{Binding VisibilityMainGrid}">
+            <controls:DefenceAdd 
+                DataContext="{Binding Defences}"
+                Visibility="{Binding Path=DataContext.VisibilityMainControls.DefenceAddVisibility, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Grid}}}"/>
+            <controls:MainUserInGuildAdd
+                DataContext="{Binding Users}"
+                Visibility="{Binding Path=DataContext.VisibilityMainControls.UsersAddVisibility, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Grid}}}"/>
+            <controls:UnitsAdd 
+                DataContext="{Binding Units}"
+                Visibility="{Binding Path=DataContext.VisibilityMainControls.UnitsAddVisibility, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Grid}}}"/>
+            <controls:WarAdd 
+                DataContext="{Binding Wars}"
+                Visibility="{Binding Path=DataContext.VisibilityMainControls.WarsAddVisibility, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Grid}}}"/>
+            <controls:WarDayAdd 
+                DataContext="{Binding WarsDay}"
+                Visibility="{Binding Path=DataContext.VisibilityMainControls.WarDaysAddVisibility, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Grid}}}"/>
+
+            <controls:RealStatAddControl 
+                DataContext="{Binding RealStat}"
+                Visibility="{Binding Path=DataContext.VisibilityMainControls.RealStatVisibility, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Grid}}}"/>
+            
+            <statistic:MainStatistic 
+                DataContext="{Binding Statistic}"
+                Visibility="{Binding Path=DataContext.VisibilityMainControls.StatisticVisibility, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Grid}}}"/>
+
+            <statistic:MainStatisticChart 
+                DataContext="{Binding ChartStatistic}"
+                Visibility="{Binding Path=DataContext.VisibilityMainControls.ChartStatisticVisibility, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Grid}}}"/>
+
+            <controls:WarDayImport
+                DataContext="{Binding WarDayImport}"
+                Visibility="{Binding Path=DataContext.VisibilityMainControls.WarDayImportVisibility, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Grid}}}"/>
+        </Grid>
+
+        <mah:HamburgerMenu x:Name="HamburgerMenuControl"
+                          DisplayMode="CompactOverlay"
+                          HamburgerWidth="48"
+                          ItemTemplate="{StaticResource HamburgerMenuItem}"
+                          OptionsItemTemplate="{StaticResource HamburgerOptionsMenuItem}">
+            <mah:HamburgerMenu.HamburgerMenuHeaderTemplate>
+                <DataTemplate>
+                    <TextBlock HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="16"
+                    Foreground="White"
+                    Text="File" />
+                </DataTemplate>
+            </mah:HamburgerMenu.HamburgerMenuHeaderTemplate>
+            <mah:HamburgerMenu.ItemsSource>
+                <mah:HamburgerMenuItemCollection>
+                    <mah:HamburgerMenuGlyphItem 
+                    Label="Import"
+                    Command="{Binding Import}"
+                    Glyph=".\Resource\Cube.gif" 
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
+                    <mah:HamburgerMenuGlyphItem 
+                    Glyph=".\Resource\Save_btn.png" 
+                    Label="Save"
+                    Command="{Binding SaveAs}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
+                    <mah:HamburgerMenuGlyphItem 
+                    Glyph=".\Resource\UserImage.png" 
+                    Label="Users"
+                    Command="{Binding OpenViewModel}"
+                    CommandParameter="{Binding Users}"/>
+                    <mah:HamburgerMenuGlyphItem 
+                    Glyph=".\Resource\UnitImage.png" 
+                    Label="Units"
+                     Command="{Binding OpenViewModel}"
+                     CommandParameter="{Binding Units}"/>
+                    <mah:HamburgerMenuGlyphItem 
+                    Glyph=".\Resource\RealState.png" 
+                    Label="Guild statistic"
+                    Command="{Binding OpenViewModel}"
+                    CommandParameter="{Binding RealStat}"/>
+                    <mah:HamburgerMenuGlyphItem 
+                    Glyph=".\Resource\War.png" 
+                    Label="Wars"
+                    Command="{Binding OpenViewModel}"
+                    CommandParameter="{Binding Wars}"/>
+                    <mah:HamburgerMenuGlyphItem 
+                    Glyph=".\Resource\Shield.png" 
+                    Label="Defences"
+                    Command="{Binding OpenViewModel}"
+                    CommandParameter="{Binding Defences}"/>
+                    <mah:HamburgerMenuGlyphItem 
+                    Glyph=".\Resource\WarDay.png" 
+                    Label="War days"
+                    Command="{Binding OpenViewModel}"
+                    CommandParameter="{Binding WarsDay}"/>
+                    <mah:HamburgerMenuGlyphItem 
+                    Glyph=".\Resource\TopDef.png" 
+                    Label="Statistic"
+                    Command="{Binding OpenViewModel}"
+                    CommandParameter="{Binding Statistic}"/>
+                    <mah:HamburgerMenuGlyphItem 
+                    Glyph=".\Resource\Graphics.png" 
+                    Label="Chart statistic"
+                    Command="{Binding OpenViewModel}"
+                    CommandParameter="{Binding ChartStatistic}"/>
+                </mah:HamburgerMenuItemCollection>
+            </mah:HamburgerMenu.ItemsSource>
+            <mah:HamburgerMenu.OptionsItemsSource>
+                <mah:HamburgerMenuItemCollection>
+                    <mah:HamburgerMenuIconItem Label="About">
+                        <mah:HamburgerMenuIconItem.Icon>
+                            <iconPacks:PackIconMaterial  
+                                Width="22"
+                                Height="22"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Kind="Help" />
+                        </mah:HamburgerMenuIconItem.Icon>
+                        <mah:HamburgerMenuIconItem.Tag>
+                            <TextBlock HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="28"
+                       FontWeight="Bold">
+                About
+                            </TextBlock>
+                        </mah:HamburgerMenuIconItem.Tag>
+                    </mah:HamburgerMenuIconItem>
+
+                </mah:HamburgerMenuItemCollection>
+            </mah:HamburgerMenu.OptionsItemsSource>
+            <!--<mah:HamburgerMenu.ContentTemplate>
+                <DataTemplate>
+                    <Grid x:Name="ContentGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="48" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0"
+                  Margin="-1 0 -1 0"
+                  Background="#7A7A7A">
+                    <TextBlock x:Name="Header"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="24"
+                       Foreground="White"
+                       Text="{Binding Label}" />
+                        </Border>
+                        <mah:TransitioningContentControl Grid.Row="1"
+                                                Content="{Binding}"
+                                                RestartTransitionOnContentChange="True"
+                                                Transition="Default">
+
+                            <mah:TransitioningContentControl.Resources>
+                                <DataTemplate DataType="{x:Type mah:HamburgerMenuGlyphItem}">
+                                    <Image Source="{Binding Glyph, Mode=OneWay, Converter={converters:NullToUnsetValueConverter}}" />
+                                </DataTemplate>
+
+                                <DataTemplate DataType="{x:Type mah:HamburgerMenuIconItem}">
+                                    <ContentControl Content="{Binding Tag, Mode=OneWay}"
+                                  Focusable="True"
+                                  IsTabStop="False" />
+                                </DataTemplate>
+                            </mah:TransitioningContentControl.Resources>
+
+                        </mah:TransitioningContentControl>
+                    </Grid>
+                </DataTemplate>
+            </mah:HamburgerMenu.ContentTemplate>-->
+        </mah:HamburgerMenu>
+    </Grid>
+</mah:MetroWindow>

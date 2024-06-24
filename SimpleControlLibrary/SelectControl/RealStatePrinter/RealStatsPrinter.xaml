@@ -1,0 +1,115 @@
+﻿<UserControl x:Class="SimpleControlLibrary.SelectControl.RealStatePrinter.RealStatsPrinter"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:type="clr-namespace:GemsOfWarsMainTypes.Model;assembly=GemsOfWarsMainTypes"
+             xmlns:converter="clr-namespace:SimpleControlsLibrary.Converters"
+             xmlns:sixcolor="clr-namespace:SimpleControlLibrary.SelectControl.SixColorsControl"
+             d:DataContext="{d:DesignInstance Type=type:RealWarState}"
+             xmlns:local="clr-namespace:SimpleControlLibrary.SelectControl.RealStatePrinter"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converter:ColorDefenceConverterColor x:Key="cColorDefenceConverterColor"/>
+    </UserControl.Resources>
+    <Grid MinHeight="75">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MaxWidth="30"/>
+                <ColumnDefinition MaxWidth="30"/>
+                <ColumnDefinition MaxWidth="30"/>
+                <ColumnDefinition MaxWidth="30"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition MaxHeight="15"/>
+                <RowDefinition MaxHeight="15"/>
+                <RowDefinition MaxHeight="15"/>
+                <RowDefinition MaxHeight="15"/>
+                <RowDefinition MaxHeight="15"/>
+            </Grid.RowDefinitions>
+            <!--0 0-->
+            <TextBlock
+                Grid.Row="0"
+                Grid.ColumnSpan="3"
+                FontSize="10"
+                Text="{Binding War.DisplayName}"/>
+            
+            <TextBlock
+                Grid.Row="1"
+                 Grid.ColumnSpan="2"
+                FontSize="10"
+                Text="{Binding EnemyGuild.Name}"/>
+               
+                <sixcolor:ColorRectangle
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                Margin="0,13"
+                
+                Grid.Column="3"
+                IsReadOnly="True"
+                Nonselection="True"
+                BorderSize="10"
+                Color="{Binding ColorDay, Converter={StaticResource cColorDefenceConverterColor}}"
+                />
+               
+                <!--2 0-2-->
+                <Grid
+                    Margin="0,-8,0,0"
+                    Grid.Row="2"
+                    Grid.RowSpan="2"
+                    Grid.ColumnSpan="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock
+                        Grid.Column="0"
+                        FontSize="10"
+                        Text="A A:"/>
+                    <TextBlock
+                        Grid.Column="1"
+                        FontSize="10"
+                        Text="{Binding AnabiosAttack}"/>
+                    
+                    <TextBlock
+                        Grid.Column="2"
+                        FontSize="10"
+                        Text="A L:"/>
+                    
+                    <TextBlock
+                        Grid.Column="3"
+                        FontSize="10"
+                        Text="{Binding AnabiosLoss}"/>
+
+                    <TextBlock
+                        Grid.Row="1"
+                        FontSize="10"
+                        Grid.Column="0"
+                        Text="A:"/>
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        FontSize="10"
+                        Text="{Binding CountAttack}"/>
+
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        FontSize="10"
+                        Text="L:"/>
+
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="3"
+                        FontSize="10"
+                        Text="{Binding CountLossEnemy}"/>
+                </Grid>
+        <TextBlock Grid.Row="3" Text=" "/>
+    </Grid>
+</UserControl>

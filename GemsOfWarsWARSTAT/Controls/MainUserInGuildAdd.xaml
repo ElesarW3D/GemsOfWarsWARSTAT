@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="GemsOfWarsWARSTAT.Controls.MainUserInGuildAdd"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GemsOfWarsWARSTAT.Controls"
+              d:DataContext="{d:DesignInstance Type=viewModels:MainUserInGuildAddViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="Gray">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.5*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>  
+        <local:UsersAdd
+            DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}, Path=DataContext.UserAddViewModel}"
+            Grid.Row="0"
+            Grid.Column="0"/>
+        <local:GuildAdd
+            DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}, Path=DataContext.GuildAddViewModel}"
+            Grid.Row="0"
+            Grid.Column="1"/>   
+        <local:UsersInGuilds
+            DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}, Path=DataContext.UsersInGuildAddViewModel}"
+            Grid.Row="1"
+            Grid.ColumnSpan="2"/>
+    </Grid>
+</UserControl>

@@ -1,0 +1,15 @@
+*.suo
+*.g.cs
+/.vs/*
+*.cache
+*.g.i.cs
+*.baml
+*.exe
+*.Dll
+/.vs/*
+*.g.resources
+*.pdb
+*.JPG
+/GemsOfWarsWARSTAT/Resource/WarDbConnection.mdf
+packages/*
+/GemsOfWarsWARSTAT/obj/Debug/*.*

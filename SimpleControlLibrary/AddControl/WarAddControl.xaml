@@ -1,0 +1,283 @@
+﻿<UserControl x:Class="SimpleControlLibrary.AddControl.WarAddControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SimpleControlLibrary.AddControl"
+             xmlns:sixcolors="clr-namespace:SimpleControlLibrary.SelectControl.SixColorsControl"
+             xmlns:defControls="clr-namespace:SimpleControlLibrary.SelectControl.DefenceControl" 
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+             xmlns:buttons ="clr-namespace:SimpleControlLibrary.Buttons"
+             xmlns:validation ="clr-namespace:SimpleControlLibrary.Validation"
+               xmlns:converters="clr-namespace:SimpleControlsLibrary.Converters" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converters:ColorDefenceConverterInt x:Key="cColorDefenceConverterInt"/>
+        <converters:UnitColorConverterInt x:Key="cUnitColorConverterInt"/>
+        <converters:BooleanInvertConverter x:Key="cBoolInvert"/>
+        <converters:BooleanConverter x:Key="cBool"/>
+        <converters:GetItemCollectionConverter x:Key="cGetItem"/>
+        <Style x:Key="myLBStyle" TargetType="{x:Type ListBoxItem}">
+            <Style.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                             Color="LightSeaGreen"/>
+            </Style.Resources>
+        </Style>
+        <Style 
+            x:Key="BaseTextBlock" 
+            TargetType="{x:Type TextBlock}">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid Grid.Column="1" Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <!--0-->
+            <RowDefinition Height="0.2*"/>
+            <!--1-->
+            <RowDefinition Height="0.2*"/>
+            <!--2-->
+            <RowDefinition Height="0.1*"/>
+            <!--3-->
+            <RowDefinition Height="0.1*"/>
+            <!--4-->
+            <RowDefinition Height="0.1*"/>
+            <!--5-->
+            <RowDefinition Height="0.1*"/>
+            <!--6-->
+            <RowDefinition Height="0.2*"/>
+            <!--7-->
+            <RowDefinition Height="0.1*"/>
+            <!--7-->
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <!--0-->
+
+        <TextBlock 
+                Grid.Column="0"
+                Grid.Row="0"
+                Style="{StaticResource BaseTextBlock}"
+                Text="Выберите войну:" 
+                />
+        <ComboBox 
+                Grid.Column="1"
+                Grid.Row="0"
+                MinWidth="200"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="16"
+                IsEnabled="{Binding IsEditing}"
+                SelectedValue="{Binding Selection.War}"
+                ItemsSource="{Binding Wars}"
+                DisplayMemberPath="DisplayName"/>
+
+        <!--1-->
+        <TextBlock 
+                Grid.Row="1"
+                Grid.Column="0"
+                Style="{StaticResource BaseTextBlock}"
+                Text="День войны :"/>
+
+        <sixcolors:SixColorsEditor
+                SelectColors="{Binding Selection.ColorDay, Mode=TwoWay, Converter={StaticResource cColorDefenceConverterInt}}"
+                Grid.Row="1"
+                IsEnabled="{Binding IsEditing}"
+                HorizontalAlignment="Center"
+                Grid.Column="1"
+                IsOneColor="True"
+                BorderSize="1"
+                SquareSize="30"
+                Margin="2"/>
+        <!--2-->
+        <Grid Grid.Row="2"
+                  Grid.Column="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <defControls:DefenceSelecter
+                            x:Name="MDefenceSelecter1"
+                            Margin="2"
+                            Grid.Column="0"
+                            IsReadOnly="True">
+
+                    <defControls:DefenceSelecter.DataContext>
+                        <Binding Path="AgregatorViewModel"
+                            Converter="{StaticResource cGetItem}">
+                            <Binding.ConverterParameter>
+                                <sys:Int32>0</sys:Int32>
+                            </Binding.ConverterParameter>
+                        </Binding>
+                    </defControls:DefenceSelecter.DataContext>
+                </defControls:DefenceSelecter>
+                <defControls:DefenceSelecter
+                            x:Name="MDefenceSelecter2"
+                            Margin="2"
+                            Grid.Column="1"
+                            IsReadOnly="True"
+                           >
+                    <defControls:DefenceSelecter.DataContext>
+                        <Binding Path="AgregatorViewModel"
+                            Converter="{StaticResource cGetItem}">
+                            <Binding.ConverterParameter>
+                                <sys:Int32>1</sys:Int32>
+                            </Binding.ConverterParameter>
+                        </Binding>
+                    </defControls:DefenceSelecter.DataContext>
+                </defControls:DefenceSelecter>
+                <defControls:DefenceSelecter
+                            x:Name="MDefenceSelecter3"
+                            Margin="2"
+                            Grid.Column="2"
+                            IsReadOnly="True"
+                           >
+                    <defControls:DefenceSelecter.DataContext>
+                        <Binding Path="AgregatorViewModel"
+                            Converter="{StaticResource cGetItem}">
+                            <Binding.ConverterParameter>
+                                <sys:Int32>2</sys:Int32>
+                            </Binding.ConverterParameter>
+                        </Binding>
+                    </defControls:DefenceSelecter.DataContext>
+                </defControls:DefenceSelecter>
+                <defControls:DefenceSelecter
+                            x:Name="MDefenceSelecter4"
+                            Margin="2"
+                            Grid.Column="3"
+                            IsReadOnly="True"
+                           >
+                    <defControls:DefenceSelecter.DataContext>
+                        <Binding Path="AgregatorViewModel"
+                            Converter="{StaticResource cGetItem}">
+                            <Binding.ConverterParameter>
+                                <sys:Int32>3</sys:Int32>
+                            </Binding.ConverterParameter>
+                        </Binding>
+                    </defControls:DefenceSelecter.DataContext>
+                </defControls:DefenceSelecter>
+            </Grid>
+        </Grid>
+        <!--3-->
+        <TextBlock 
+                Grid.Column="0"
+                Grid.Row="3"
+                Style="{StaticResource BaseTextBlock}"
+                TextWrapping="Wrap"
+                Text="Выберите класс:" 
+                />
+        <ComboBox 
+                IsEditable="True"
+                Grid.Column="1"
+                Grid.Row="3"
+                MinWidth="200"
+                IsEnabled="{Binding IsEditing}"
+                SelectedValue="{Binding SelectionWarDay.Defence.HeroClass, Mode=TwoWay}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="16"
+                DisplayMemberPath="Name"
+                ItemsSource="{Binding HeroClasses}"
+                >
+           
+        </ComboBox>
+        <!--4-->
+        <TextBlock 
+                Grid.Column="0"
+                Grid.Row="4"
+                Style="{StaticResource BaseTextBlock}"
+                TextWrapping="Wrap"
+                Text="Выберите пользователя:" 
+                />
+        <ComboBox 
+                Name="MNameUser"
+                IsEditable="True"
+                Grid.Column="1"
+                Grid.Row="4"
+                MinWidth="200"
+                IsEnabled="{Binding IsEditing}"
+                SelectedValue="{Binding Selection.User}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="16"
+                DisplayMemberPath="Name"
+                ItemsSource="{Binding Users}"
+                Text="{Binding TextSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="LostFocus">
+                    <command:EventToCommand 
+                            Command="{Binding AddUserLostFocus}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </ComboBox>
+        <!--5-->
+        <TextBlock 
+                Grid.Column="0"
+                Grid.Row="5"
+                TextWrapping="Wrap"
+                Style="{StaticResource BaseTextBlock}"
+                Text="Количество побед:" 
+                />
+        <TextBox 
+                Grid.Column="1"
+                Grid.Row="5"
+                Margin="4"
+                IsEnabled="{Binding IsEditing}"
+                Text="{Binding Selection.Victories}"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                FontSize="16"/>
+        <!--6-->
+        <TextBlock 
+                Grid.Column="0"
+                Grid.Row="6"
+                TextWrapping="Wrap"
+                Style="{StaticResource BaseTextBlock}"
+                Text="Количество поражений:" 
+                />
+        <TextBox 
+                Margin="4"
+                Grid.Column="1"
+                Grid.Row="6"
+                IsEnabled="{Binding IsEditing}"
+                Text="{Binding Selection.Losses}"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                FontSize="16"/>
+        <!--7-->
+        <Grid
+                Grid.Row="7"
+                Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <buttons:ActionButtons
+                    Grid.ColumnSpan="5"/>
+            <Button 
+                    FontSize="12"
+                    Grid.Column="5"
+                    Content="Clone"
+                    Command="{Binding CloneItem}"/>
+        </Grid>
+        <!--8-->
+        <validation:ValidationControl
+                Grid.ColumnSpan="2"
+                Grid.Row="8"/>
+    </Grid>
+</UserControl>

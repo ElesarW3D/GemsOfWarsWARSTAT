@@ -1,0 +1,16 @@
+C:\Users\elesa\source\repos\GemsOfWarsWARSTAT\GemsOfWarAnalitics\bin\Release\GemsOfWarAnalitics.dll
+C:\Users\elesa\source\repos\GemsOfWarsWARSTAT\GemsOfWarAnalitics\bin\Release\GemsOfWarAnalitics.pdb
+C:\Users\elesa\source\repos\GemsOfWarsWARSTAT\GemsOfWarAnalitics\bin\Release\System.Drawing.Common.dll
+C:\Users\elesa\source\repos\GemsOfWarsWARSTAT\GemsOfWarAnalitics\bin\Release\System.Numerics.Vectors.dll
+C:\Users\elesa\source\repos\GemsOfWarsWARSTAT\GemsOfWarAnalitics\bin\Release\System.ValueTuple.dll
+C:\Users\elesa\source\repos\GemsOfWarsWARSTAT\GemsOfWarAnalitics\bin\Release\System.Numerics.Vectors.xml
+C:\Users\elesa\source\repos\GemsOfWarsWARSTAT\GemsOfWarAnalitics\bin\Release\System.ValueTuple.xml
+C:\Users\elesa\source\repos\GemsOfWarsWARSTAT\GemsOfWarAnalitics\obj\Release\GemsOfWarAnalitics.csproj.AssemblyReference.cache
+C:\Users\elesa\source\repos\GemsOfWarsWARSTAT\GemsOfWarAnalitics\obj\Release\GemsOfWarAnalitics.Properties.Resources.resources
+C:\Users\elesa\source\repos\GemsOfWarsWARSTAT\GemsOfWarAnalitics\obj\Release\GemsOfWarAnalitics.csproj.GenerateResource.cache
+C:\Users\elesa\source\repos\GemsOfWarsWARSTAT\GemsOfWarAnalitics\obj\Release\GemsOfWarAnalitics.csproj.CoreCompileInputs.cache
+C:\Users\elesa\source\repos\GemsOfWarsWARSTAT\GemsOfWarAnalitics\obj\Release\GemsOfWarAnalitics.csproj.CopyComplete
+C:\Users\elesa\source\repos\GemsOfWarsWARSTAT\GemsOfWarAnalitics\obj\Release\GemsOfWarAnalitics.dll
+C:\Users\elesa\source\repos\GemsOfWarsWARSTAT\GemsOfWarAnalitics\obj\Release\GemsOfWarAnalitics.pdb
+C:\Users\elesa\source\repos\GemsOfWarsWARSTAT\GemsOfWarAnalitics\bin\Release\GemsOfWarsMainTypes.dll
+C:\Users\elesa\source\repos\GemsOfWarsWARSTAT\GemsOfWarAnalitics\bin\Release\GemsOfWarsMainTypes.pdb

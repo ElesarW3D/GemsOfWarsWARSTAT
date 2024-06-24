@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="SimpleControlLibrary.SelectControl.DefenceControl.DefenceHorizontalList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SimpleControlLibrary.SelectControl.DefenceControl"
+             xmlns:converters="clr-namespace:SimpleControlsLibrary.Converters"
+             d:DataContext="{d:DesignInstance Type=local:DefenceHorizontalListViewModel}"
+             mc:Ignorable="d" 
+             x:Name="MDefenceHorizontalList"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converters:UnitColorConverterInt x:Key="cUnitColorConverterInt"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="0.8*"/>
+            <ColumnDefinition Width="0.1*"/>
+        </Grid.ColumnDefinitions>
+        <Button
+            Grid.Column="0"
+            Content="Previous"
+            IsEnabled="{Binding IsEditing}"
+            Command="{Binding PreviousItem}"/>
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.25*"/>
+                <ColumnDefinition Width="0.25*"/>
+                <ColumnDefinition Width="0.25*"/>
+                <ColumnDefinition Width="0.25*"/>
+            </Grid.ColumnDefinitions>
+            <local:DefencePrinter
+                            HorizontalAlignment="Center"
+                            Margin="1"
+                            Grid.Column="0"
+                            IsReadOnly="True"
+                            Text="{Binding Path=Selection.Units1.DisplayName}"
+                            ColorValue="{Binding Path=Selection.Units1.ColorUnits, Converter={StaticResource cUnitColorConverterInt}}"/>
+            <local:DefencePrinter
+                            HorizontalAlignment="Center"
+                            Margin="1"
+                            Grid.Column="1"
+                            IsReadOnly="True"
+                            Text="{Binding Path=Selection.Units2.DisplayName}"
+                            ColorValue="{Binding Path=Selection.Units2.ColorUnits, Converter={StaticResource cUnitColorConverterInt}}"/>
+            <local:DefencePrinter
+                            HorizontalAlignment="Center"
+                            Margin="1"
+                            Grid.Column="2"
+                             IsReadOnly="True"
+                            Text="{Binding Path=Selection.Units3.DisplayName}"
+                            ColorValue="{Binding Path=Selection.Units3.ColorUnits, Converter={StaticResource cUnitColorConverterInt}}"/>
+            <local:DefencePrinter
+                            HorizontalAlignment="Center"
+                            Margin="1"
+                            Grid.Column="3"
+                            IsReadOnly="True"
+                            Text="{Binding Path=Selection.Units4.DisplayName}"
+                            ColorValue="{Binding Path=Selection.Units4.ColorUnits, Converter={StaticResource cUnitColorConverterInt}}"/>
+        </Grid>
+        <Button
+            Grid.Column="2"
+            IsEnabled="{Binding IsEditing}"
+            Content="Next"
+            Command="{Binding NextItem}"/>
+    </Grid>
+</UserControl>

@@ -1,0 +1,181 @@
+﻿<UserControl x:Class="GemsOfWarsWARSTAT.Controls.UnitsAdd"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GemsOfWarsWARSTAT.Controls"
+             xmlns:converters ="clr-namespace:SimpleControlsLibrary.Converters;assembly=SimpleControlLibrary"
+             xmlns:ctr="clr-namespace:SimpleControlLibrary.SelectControl.SixColorsControl;assembly=SimpleControlLibrary"
+             xmlns:constants="clr-namespace:GemsOfWarsMainTypes;assembly=GemsOfWarsMainTypes" 
+             xmlns:viewmodel="clr-namespace:GemsOfWarsWARSTAT.ViewModel" 
+             xmlns:buttons ="clr-namespace:SimpleControlLibrary.Buttons;assembly=SimpleControlLibrary"
+             xmlns:validation ="clr-namespace:SimpleControlLibrary.Validation;assembly=SimpleControlLibrary"
+             d:DataContext="{d:DesignInstance Type=viewmodel:UnitsAddViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="2130.029" d:DesignWidth="2269.615">
+    <UserControl.Resources>
+        <converters:UnitColorConverter x:Key="cUnitColorConverter"/>
+        <converters:UnitsToStringConverter x:Key="cUnitsToStringConverter"/>
+        <converters:SelectionToUnitConverter x:Key="cSelectionToUnitConverter"/>
+        <converters:UnitColorConverterInt x:Key="cUnitColorConverterInt"/>
+        <converters:BooleanInvertConverter x:Key="cBoolInvert"/>
+    </UserControl.Resources>
+    <Grid Background="Gray">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.45*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ListBox 
+            x:Name="MUnitsListBox"
+            Grid.Column="0" 
+            IsEnabled="{Binding IsEditing, Converter={StaticResource cBoolInvert}}"
+            ItemsSource="{Binding Units, UpdateSourceTrigger=PropertyChanged}"
+            SelectedValue="{Binding Selection, Mode=TwoWay}"
+            DisplayMemberPath="DisplayName"
+        />
+        <Grid Grid.Column="1" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <!--Row 0-->
+            <TextBlock 
+                Grid.ColumnSpan="2"
+                Grid.Row="0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Text="Добавьте войска" 
+                FontSize="16"
+                />
+            <!--Row 1-->
+            <TextBlock 
+                Grid.Row="1"
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                Text="Имя :" 
+                FontSize="12"/>
+            <TextBox 
+                Grid.Row="1"
+                Grid.Column="1"
+                FontSize="12" 
+                Margin="2"
+                IsEnabled="{Binding IsEditing}"
+                Text="{Binding Selection.Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+            <!--Row 2-->
+            <TextBlock 
+                Grid.ColumnSpan="2"
+                Grid.Row="2"
+                Text="Укажите цвет" 
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="16"/>
+            <!--Row 3-->
+            <ctr:SixColorsEditor
+                Name="MSixColorsEditor"
+                 Grid.Column="1"
+                 Grid.Row="3"
+                    IsEnabled="{Binding IsEditing}"
+                    IsReadOnly="False"
+                   SelectColors="{Binding Selection.ColorUnits, Mode=TwoWay, Converter={StaticResource cUnitColorConverterInt}}"
+                SquareSize="40"/>
+            
+            <TextBlock 
+                Grid.Row="3"
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                Text="Цвет :" 
+                FontSize="12"
+                Margin="2"/>
+
+            <!--Row 4-->
+            <TextBlock
+                Grid.ColumnSpan="2"
+                Grid.Row="4"
+                FontSize="12"
+                Text="{Binding NameColor}"/>
+            
+            <!--Row 5-->
+            <TextBlock
+                Grid.Column="0"
+                Grid.Row="5"
+                FontSize="12"
+                Text="Код для игры"/>
+            <TextBox
+                Grid.Column="1"
+                Grid.Row="5"
+                FontSize="12"
+                IsEnabled="{Binding IsEditing}"
+                Text="{Binding Selection.GameId, Mode=TwoWay}"/>
+
+            <!--Row 6-->
+            <Grid Grid.Row="6" Grid.ColumnSpan="2">
+                <Grid.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsWeapon}" Value="True">
+                                <Setter Property="Grid.Visibility" Value="Visible"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsWeapon}" Value="False">
+                                <Setter Property="Grid.Visibility" Value="Hidden"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+                <ComboBox 
+                    ItemsSource="{Binding HeroClasses}" 
+                    FontSize="16"
+                    IsEnabled="{Binding IsEditing}"
+                    VerticalAlignment="Center"
+                    SelectedValue="{Binding SelectionHero, Mode=TwoWay}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </Grid>
+            <!--Row 7-->
+            <Grid 
+                Grid.Row="7"
+                Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button 
+                    Grid.Column="0"
+                    FontSize="12" 
+                    Content="Add weapon"
+                    Command="{Binding AddWeapon}"/>
+                <buttons:ActionButtons
+                    Grid.Column="1"
+                    Grid.ColumnSpan="4"/>
+                <Button 
+                    Grid.Column="5"
+                    FontSize="12" 
+                    Content="Clone"
+                    Command="{Binding CloneItem}"/>
+
+            </Grid>
+
+            <validation:ValidationControl
+                Grid.Row="8"
+                Grid.ColumnSpan="2"/>
+        </Grid>
+    </Grid>
+</UserControl>

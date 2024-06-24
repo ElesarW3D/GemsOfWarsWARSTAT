@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{734C914B-ED13-4EED-B757-7C091DA4F8B0}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <RootNamespace>SimpleControlLibrary</RootNamespace>
+    <AssemblyName>SimpleControlLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CommonServiceLocator, Version=2.0.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.2\lib\net47\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="ControlzEx, Version=4.0.0.0, Culture=neutral, PublicKeyToken=69f1c32f803d307e, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.4.4.0\lib\net462\ControlzEx.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.4.1.0, Culture=neutral, PublicKeyToken=669f0b5e8f868abf, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.4.1.0, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=2.0.0.0, Culture=neutral, PublicKeyToken=51482d6f650b2b3f, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.2.4.9\lib\net47\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.19\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddControl\UserAddControl.xaml.cs">
+      <DependentUpon>UserAddControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Buttons\ActionButtons.xaml.cs">
+      <DependentUpon>ActionButtons.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectControl\Converter\BleedingColorConverter.cs" />
+    <Compile Include="SelectControl\Converter\BooleanInvertConverter.cs" />
+    <Compile Include="SelectControl\Converter\ColorDefenceConverterColor.cs" />
+    <Compile Include="SelectControl\Converter\GetDisplayNameConverter.cs" />
+    <Compile Include="SelectControl\Converter\TestConverter.cs" />
+    <Compile Include="SelectControl\Converter\GetItemCollectionConverter.cs" />
+    <Compile Include="SelectControl\Converter\IntValueConverter.cs" />
+    <Compile Include="SelectControl\Converter\SelectionToUnitConverter.cs" />
+    <Compile Include="SelectControl\Converter\UnitColorConverter.cs" />
+    <Compile Include="SelectControl\Converter\UnitColorConverterInt.cs" />
+    <Compile Include="SelectControl\Converter\ColorDefenceConverterInt.cs" />
+    <Compile Include="SelectControl\Converter\UnitsToStringConverter.cs" />
+    <Compile Include="SelectControl\DefenceControl\DefenceHorizontalList.xaml.cs">
+      <DependentUpon>DefenceHorizontalList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectControl\DefenceControl\DefencesAgregatorViewModel.cs" />
+    <Compile Include="SelectControl\DefenceControl\DefenceSelecter.xaml.cs">
+      <DependentUpon>DefenceSelecter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectControl\DefenceControl\DefencePrinter.xaml.cs">
+      <DependentUpon>DefencePrinter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectControl\DefenceControl\DefenceHorizontalListViewModel.cs" />
+    <Compile Include="SelectControl\DefenceControl\DefenceSelecterViewModel.cs" />
+    <Compile Include="SelectControl\RealStatePrinter\RealStatsPrinter.xaml.cs">
+      <DependentUpon>RealStatsPrinter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectControl\SixColorsControl\ColorRectangle.xaml.cs">
+      <DependentUpon>ColorRectangle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectControl\WarDayControl\WarDayPrinter.xaml.cs">
+      <DependentUpon>WarDayPrinter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\ValidationControl.xaml.cs">
+      <DependentUpon>ValidationControl.xaml</DependentUpon>
+    </Compile>
+    <Page Include="AddControl\UserAddControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Buttons\ActionButtons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectControl\DefenceControl\DefenceHorizontalList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectControl\DefenceControl\DefenceSelecter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SelectControl\DefenceControl\DefencePrinter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectControl\RealStatePrinter\RealStatsPrinter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectControl\SixColorsControl\ColorRectangle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectControl\SixColorsControl\SixColorsEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectControl\UnitColorSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="SelectControl\SixColorsControl\SixColorsEditor.xaml.cs">
+      <DependentUpon>SixColorsEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelectControl\UnitColorSelector.xaml.cs">
+      <DependentUpon>UnitColorSelector.xaml</DependentUpon>
+    </Compile>
+    <Page Include="SelectControl\WarDayControl\WarDayPrinter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Validation\ValidationControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GemsOfWarsMainTypes\GemsOfWarsMainTypes.csproj">
+      <Project>{e76b81f7-eafb-41ea-bef4-f71ab9c51516}</Project>
+      <Name>GemsOfWarsMainTypes</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="StatisticControl\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

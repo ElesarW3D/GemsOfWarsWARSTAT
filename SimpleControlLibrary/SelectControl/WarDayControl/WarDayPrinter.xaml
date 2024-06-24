@@ -1,0 +1,87 @@
+﻿<UserControl x:Class="SimpleControlLibrary.SelectControl.WarDayControl.WarDayPrinter"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SimpleControlLibrary.SelectControl.WarDayControl"
+             xmlns:type="clr-namespace:GemsOfWarsMainTypes.Model;assembly=GemsOfWarsMainTypes"
+             xmlns:converter="clr-namespace:SimpleControlsLibrary.Converters"
+             xmlns:sixcolor="clr-namespace:SimpleControlLibrary.SelectControl.SixColorsControl"
+             d:DataContext="{d:DesignInstance Type=type:WarDay}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converter:ColorDefenceConverterColor x:Key="cColorDefenceConverterColor"/>
+    </UserControl.Resources>
+    <Grid Height="90">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MaxWidth="50"/>
+            <ColumnDefinition MaxWidth="50"/>
+            <ColumnDefinition MaxWidth="50"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition MinHeight="30"/>
+            <RowDefinition MinHeight="30"/>
+            <RowDefinition MinHeight="30"/>
+        </Grid.RowDefinitions>
+        <!--0 0-->
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="0"
+            Margin="2"
+            FontSize="10"
+            Text="{Binding User.Name}"/>
+        <!--0 1-->
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="1"
+            Margin="2"
+            TextWrapping="Wrap"
+            FontSize="7"
+            Text="{Binding War.DisplayName}"/>
+        <!--0 2-->
+        <sixcolor:ColorRectangle
+            Grid.Row="0"
+            Grid.Column="2"
+            IsReadOnly="True"
+            FontSize="10"
+            Nonselection="True"
+            BorderSize="15"
+            Color="{Binding ColorDay, Converter={StaticResource cColorDefenceConverterColor}}"
+            />
+        <!--1 0-2 -->
+        <TextBlock
+            Grid.Row="1"
+            Grid.ColumnSpan="3"
+            FontSize="7"
+            TextWrapping="Wrap"
+            Text="{Binding Defence.DisplayName}"/>
+        <!--2 0-2-->
+        <Grid
+            Grid.Row="2"
+            Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock
+                Grid.Column="0"
+                FontSize="12"
+                Text="V:"/>
+            <TextBlock
+                Grid.Column="1"
+                FontSize="12"
+                Text="{Binding Victories}"/>
+            <TextBlock
+                Grid.Column="2"
+                FontSize="12"
+                Text="L:"/>
+            <TextBlock
+                Grid.Column="3"
+                FontSize="12"
+                Text="{Binding Losses}"/>
+        </Grid>
+    </Grid>
+</UserControl>

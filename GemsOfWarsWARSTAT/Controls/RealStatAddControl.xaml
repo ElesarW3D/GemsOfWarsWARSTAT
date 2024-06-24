@@ -1,0 +1,225 @@
+﻿<UserControl x:Class="GemsOfWarsWARSTAT.Controls.RealStatAddControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:converters ="clr-namespace:SimpleControlsLibrary.Converters;assembly=SimpleControlLibrary"
+             xmlns:ctr="clr-namespace:SimpleControlLibrary.SelectControl.SixColorsControl;assembly=SimpleControlLibrary"
+             xmlns:constants="clr-namespace:GemsOfWarsMainTypes;assembly=GemsOfWarsMainTypes" 
+             xmlns:viewmodel="clr-namespace:GemsOfWarsWARSTAT.ViewModel" 
+             xmlns:buttons ="clr-namespace:SimpleControlLibrary.Buttons;assembly=SimpleControlLibrary"
+              xmlns:realstats ="clr-namespace:SimpleControlLibrary.SelectControl.RealStatePrinter;assembly=SimpleControlLibrary"
+             xmlns:validation ="clr-namespace:SimpleControlLibrary.Validation;assembly=SimpleControlLibrary"
+             xmlns:local="clr-namespace:GemsOfWarsWARSTAT.Controls"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             d:DataContext="{d:DesignInstance Type=viewmodel:RealStatAddViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converters:UnitColorConverter x:Key="cUnitColorConverter"/>
+        <converters:UnitsToStringConverter x:Key="cUnitsToStringConverter"/>
+        <converters:SelectionToUnitConverter x:Key="cSelectionToUnitConverter"/>
+        <converters:UnitColorConverterInt x:Key="cUnitColorConverterInt"/>
+        <converters:BooleanInvertConverter x:Key="cBoolInvert"/>
+    </UserControl.Resources>
+    <Grid Background="Gray">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ListBox 
+            Margin="1"
+            x:Name="MUnitsListBox"
+            Grid.Column="0" 
+            FontSize="8"
+            IsEnabled="{Binding IsEditing, Converter={StaticResource cBoolInvert}}"
+            ItemsSource="{Binding RealStats, UpdateSourceTrigger=PropertyChanged}"
+            SelectedValue="{Binding Selection, Mode=TwoWay}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <realstats:RealStatsPrinter
+                       />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Grid Grid.Column="1" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="0.1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <!--Row 0-->
+            <TextBlock 
+                Grid.Row="0"
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                Text="Война :" 
+                FontSize="12"/>
+            <ComboBox 
+                Grid.Row="0"
+                Grid.Column="1"
+                FontSize="12" 
+                ItemsSource="{Binding Wars}"
+                Margin="2"
+                IsEnabled="{Binding IsEditing}"
+                SelectedValue="{Binding SelectionRealStat.War}" 
+                DisplayMemberPath="DisplayName"/>
+            <!--Row 1-->
+
+            <ctr:SixColorsEditor
+                Name="MSixColorsEditor"
+                 Grid.Column="1"
+                 HorizontalAlignment="Center"
+                 Grid.Row="1"
+                 IsEnabled="{Binding IsEditing}"
+                 IsReadOnly="False"
+                IsOneColor="True"
+                   SelectColors="{Binding SelectionRealStat.ColorDay, Mode=TwoWay, Converter={StaticResource cUnitColorConverterInt}}"
+                SquareSize="40"/>
+
+            <TextBlock 
+                Grid.Row="1"
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                Text="Цвет :" 
+                FontSize="12"
+                Margin="2"/>
+            <!--Row 2-->
+            <TextBlock 
+                Grid.Row="2"
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                Text="Выбирите гильдию :" 
+                FontSize="12"
+                Margin="2"/>
+            <ComboBox 
+                Name="MNameUser"
+                IsEditable="True"
+                Grid.Column="1"
+                Grid.Row="2"
+                MinWidth="200"
+                IsEnabled="{Binding IsEditing}"
+                SelectedValue="{Binding SelectionRealStat.EnemyGuild}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="16"
+                DisplayMemberPath="Name"
+                ItemsSource="{Binding Guilds}"
+                Text="{Binding TextSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="LostFocus">
+                        <command:EventToCommand 
+                            Command="{Binding AddGroupLostFocus}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ComboBox>
+
+
+            <!--Row 3-->
+            <TextBlock 
+                Grid.Row="3"
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                Text="Всего атак :" 
+                FontSize="12"
+                Margin="2"/>
+
+            <TextBox 
+                Grid.Column="1"
+                Grid.Row="3"
+                Margin="4"
+                IsEnabled="{Binding IsEditing}"
+                Text="{Binding SelectionRealStat.CountAttack, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                FontSize="16"/>
+            
+            <!--Row 4-->
+            <TextBlock 
+                Grid.Row="4"
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                Text="Из них проигрыши :" 
+                FontSize="12"
+                Margin="2"/>
+
+            <TextBox 
+                Grid.Column="1"
+                Grid.Row="4"
+                Margin="4"
+                IsEnabled="{Binding IsEditing}"
+                Text="{Binding SelectionRealStat.CountLossEnemy, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                FontSize="16"/>
+            
+            <!--Row 5-->
+
+            <TextBlock 
+                Grid.Row="5"
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                Text="Атаки Анабиоза :" 
+                FontSize="12"
+                Margin="2"/>
+            <TextBox 
+                Grid.Column="1"
+                Grid.Row="5"
+                Margin="4"
+                IsEnabled="{Binding IsEditing}"
+                Text="{Binding SelectionRealStat.AnabiosAttack, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                FontSize="16"/>
+            <TextBox 
+                Grid.Column="1"
+                Grid.Row="5"
+                Margin="4"
+                IsEnabled="{Binding IsEditing}"
+                Text="{Binding SelectionRealStat.AnabiosAttack, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                FontSize="16"/>
+          
+            <!--Row 6-->
+            <TextBlock 
+                Grid.Row="6"
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                Text="Поражения анабиоза :" 
+                FontSize="12"
+                Margin="2"/>
+
+            <TextBox 
+                Grid.Column="1"
+                Grid.Row="6"
+                Margin="4"
+                IsEnabled="{Binding IsEditing}"
+                Text="{Binding SelectionRealStat.AnabiosLoss, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                FontSize="16"/>
+
+            <buttons:ActionButtons
+                    Grid.Row="7"
+                    Grid.ColumnSpan="2"/>
+
+
+            <validation:ValidationControl
+                Grid.Row="8"
+                Grid.ColumnSpan="2"/>
+        </Grid>
+    </Grid>
+</UserControl>

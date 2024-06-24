@@ -1,0 +1,82 @@
+﻿<UserControl x:Class="GemsOfWarsWARSTAT.Controls.WarDayAdd"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GemsOfWarsWARSTAT.Controls"
+             xmlns:sixcolors="clr-namespace:SimpleControlLibrary.SelectControl.SixColorsControl;assembly=SimpleControlLibrary"
+             xmlns:defControls="clr-namespace:SimpleControlLibrary.SelectControl.DefenceControl;assembly=SimpleControlLibrary" 
+             xmlns:converters="clr-namespace:SimpleControlsLibrary.Converters;assembly=SimpleControlLibrary" 
+             xmlns:viewmodel="clr-namespace:GemsOfWarsWARSTAT.ViewModel" 
+             xmlns:warday="clr-namespace:SimpleControlLibrary.SelectControl.WarDayControl;assembly=SimpleControlLibrary"
+             xmlns:buttons ="clr-namespace:SimpleControlLibrary.Buttons;assembly=SimpleControlLibrary"
+             xmlns:validation ="clr-namespace:SimpleControlLibrary.Validation;assembly=SimpleControlLibrary"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+             xmlns:addControls="clr-namespace:SimpleControlLibrary.AddControl;assembly=SimpleControlLibrary"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             d:DataContext="{d:DesignInstance Type=viewmodel:WarsDayAddViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converters:ColorDefenceConverterInt x:Key="cColorDefenceConverterInt"/>
+        <converters:UnitColorConverterInt x:Key="cUnitColorConverterInt"/>
+        <converters:BooleanInvertConverter x:Key="cBoolInvert"/>
+        <converters:BooleanConverter x:Key="cBool"/>
+        <converters:GetItemCollectionConverter x:Key="cGetItem"/>
+        <Style x:Key="myLBStyle" TargetType="{x:Type ListBoxItem}">
+            <Style.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                             Color="LightSeaGreen"/>
+            </Style.Resources>
+        </Style>
+        <Style 
+            x:Key="BaseTextBlock" 
+            TargetType="{x:Type TextBlock}">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid Background="Gray">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid
+            Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="15"/>
+                </Grid.ColumnDefinitions>
+                <TextBox 
+                    Text="{Binding FilterName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <Button 
+                    Grid.Column="1" 
+                    FontSize="8" 
+                    Content="X" 
+                    Command="{Binding ClearFilter}"/>
+            </Grid>
+           
+            <ListBox 
+                Grid.Row="1"
+                Width="150"
+                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                IsEnabled="{Binding IsEditing, Converter={StaticResource cBoolInvert}}"
+                ItemsSource="{Binding WarDays}"
+                SelectedValue="{Binding Selection, Mode=TwoWay}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <warday:WarDayPrinter/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+        <addControls:WarAddControl Grid.Column="1" Margin="5" />
+    </Grid>
+</UserControl>
