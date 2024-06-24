@@ -13,3 +13,10 @@
 /GemsOfWarsWARSTAT/Resource/WarDbConnection.mdf
 packages/*
 /GemsOfWarsWARSTAT/obj/Debug/*.*
+/GemsOfWarAnalitics/bin/Debug/*.*
+/GemsOfWarAnalitics/obj/Debug/*.*
+/DataBaseTest/obj/*.*
+/SimpleControlLibrary/obj/*.*
+/GemsOfWarAnalitics/obj/Debug/*.*
+/ScottplotLayer/obj/Debug/*.*
+/ReadText/ReadText/obj/Debug/*.*
