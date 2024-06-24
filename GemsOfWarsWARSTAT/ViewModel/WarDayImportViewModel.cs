@@ -121,6 +121,10 @@ namespace GemsOfWarsWARSTAT.ViewModel
             set
             {
                 _fileName = value;
+                if (string.IsNullOrEmpty(value))
+                {
+                    return ;
+                }
                 SingleTree = new NavTreeVm(value);
                 SelectCheckedToReadItem(SingleTree);
                 RaisePropertyChanged(nameof(FileName));
